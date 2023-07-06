@@ -1,1 +1,41 @@
-<p>productos works!</p>
+<div class="container-column">
+  <mat-form-field matInput>
+    <input
+      matInput
+      type="text"
+      placeholder="Buscar producto"
+      [formControl]="finderControl"
+    />
+  </mat-form-field>
+
+  <div class="container-cards">
+    <mat-card class="example-card animated fadeIn" *ngFor="let item of listaProductosView">
+      <mat-card-header>
+        <mat-card-title>{{ item.title }}</mat-card-title>
+        <mat-card-subtitle>{{ item.price | currency }}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image [src]="item.images[0]" alt="Photo" />
+      <mat-card-content>
+        <p>
+          {{ item.description }}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-icon-button matTooltip="Agregar al carrito">
+          <mat-icon>add_shopping_cart</mat-icon>
+        </button>
+        <!-- <button mat-icon-button matTooltip="Remover del carrito">
+            <mat-icon>
+                remove_shopping_cart
+            </mat-icon>
+        </button> -->
+        <!-- <button mat-icon-button matTooltip="Agregar 1">
+            <mat-icon>exposure_plus_1</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Quitar 1">
+            <mat-icon>exposure_neg_1</mat-icon>
+        </button> -->
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

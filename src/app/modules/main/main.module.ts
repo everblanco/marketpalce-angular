@@ -29,6 +29,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
 import { CarritoComponent } from './components/carrito/carrito.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 const materialComponents = [
@@ -65,7 +66,8 @@ const materialComponents = [
   imports: [
     CommonModule,
     MainRoutingModule,
-    materialComponents
+    materialComponents,
+    ReactiveFormsModule
   ]
 })
 export class MainModule { }
