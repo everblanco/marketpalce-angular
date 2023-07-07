@@ -68,6 +68,9 @@ const materialComponents = [
     MainRoutingModule,
     materialComponents,
     ReactiveFormsModule
+  ],
+  entryComponents: [
+    CarritoComponent
   ]
 })
 export class MainModule { }

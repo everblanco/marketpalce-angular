@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { FormControl } from '@angular/forms';
+import { StateService } from '../../services/state.service';
 
 @Component({
   selector: 'app-productos',
@@ -12,11 +13,12 @@ export class ProductosComponent implements OnInit {
   public listaProductosView: Array<any> = [];
   public finderControl = new FormControl('');
 
-  constructor(private api: ApiService) {}
+  constructor(private api: ApiService, private state: StateService) {}
 
   ngOnInit(): void {
     this.getProductos();
     this.observerControl();
+    this.getCarrito();
   }
 
   observerControl() {
@@ -38,6 +40,31 @@ export class ProductosComponent implements OnInit {
     this.api.getProductos().subscribe((res: any) => {
       this.listaProductosView = res.body;
       this.listaProductos = res.body;
+    });
+  }
+
+  agregar(item: any) {
+    this.api
+      .agregarProduto({
+        productoId: item.id,
+        cantidad: 1,
+      })
+      .subscribe(() => {
+        this.getCarrito();
+        alert('Producto agregado');
+      });
+  }
+
+  eliminar(item: any) {
+    this.api.eliminarProduto(item.id).subscribe(() => {
+      this.getCarrito();
+      alert('Producto eliminado');
+    });
+  }
+
+  getCarrito() {
+    this.api.consultarCarrito().subscribe((res: any) => {
+      this.state.store.next(res);
     });
   }
 }
