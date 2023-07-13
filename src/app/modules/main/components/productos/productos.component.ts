@@ -12,13 +12,13 @@ export class ProductosComponent implements OnInit {
   public listaProductos: Array<any> = [];
   public listaProductosView: Array<any> = [];
   public finderControl = new FormControl('');
+  public carrito: any;
 
   constructor(private api: ApiService, private state: StateService) {}
 
   ngOnInit(): void {
-    this.getProductos();
-    this.observerControl();
     this.getCarrito();
+    this.observerControl();
   }
 
   observerControl() {
@@ -40,6 +40,7 @@ export class ProductosComponent implements OnInit {
     this.api.getProductos().subscribe((res: any) => {
       this.listaProductosView = res.body;
       this.listaProductos = res.body;
+      this.cambiarEstado();
     });
   }
 
@@ -56,15 +57,34 @@ export class ProductosComponent implements OnInit {
   }
 
   eliminar(item: any) {
-    this.api.eliminarProduto(item.id).subscribe(() => {
-      this.getCarrito();
-      alert('Producto eliminado');
-    });
+    const index = this.carrito.body.items.findIndex(
+      (value: any) => value.productoId == item.id
+    );
+    if (index >= 0) {
+      this.api.eliminarProduto(this.carrito.body.items[index].id).subscribe(() => {
+        this.getCarrito();
+        alert('Producto eliminado');
+      });
+    }
   }
 
   getCarrito() {
     this.api.consultarCarrito().subscribe((res: any) => {
       this.state.store.next(res);
+      this.carrito = res;
+      this.getProductos();
+    });
+  }
+
+  cambiarEstado() {
+    this.carrito.body.items.forEach((element: any) => {
+      const { productoId } = element;
+      const index = this.listaProductosView.findIndex(
+        (item: any) => item.id == productoId
+      );
+      if (index >= 0) {
+        this.listaProductosView[index]['carrito'] = true;
+      }
     });
   }
 }

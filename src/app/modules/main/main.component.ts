@@ -39,8 +39,11 @@ export class MainComponent implements OnInit {
   }
 
   openModal() {
-    let dialogRef = this.dialog.open(CarritoComponent, {
-      data: this.carrito,
-    });
+    let dialogRef = this.dialog.open(CarritoComponent);
+    dialogRef.afterClosed().subscribe(
+      () => {
+        location.reload();
+      }
+    )
   }
 }

@@ -30,6 +30,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
 import { CarritoComponent } from './components/carrito/carrito.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PagarComponent } from './components/pagar/pagar.component';
 
 
 const materialComponents = [
@@ -61,7 +62,8 @@ const materialComponents = [
     MainComponent,
     ProductosComponent,
     TarjetasComponent,
-    CarritoComponent
+    CarritoComponent,
+    PagarComponent
   ],
   imports: [
     CommonModule,
@@ -70,7 +72,8 @@ const materialComponents = [
     ReactiveFormsModule
   ],
   entryComponents: [
-    CarritoComponent
+    CarritoComponent,
+    PagarComponent
   ]
 })
 export class MainModule { }

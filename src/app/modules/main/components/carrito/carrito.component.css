@@ -1,0 +1,18 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+}
+
+.acciones {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}

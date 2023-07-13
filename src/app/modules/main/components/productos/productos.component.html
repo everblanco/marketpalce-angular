@@ -9,7 +9,10 @@
   </mat-form-field>
 
   <div class="container-cards">
-    <mat-card class="example-card animated fadeIn" *ngFor="let item of listaProductosView">
+    <mat-card
+      class="example-card animated fadeIn"
+      *ngFor="let item of listaProductosView"
+    >
       <mat-card-header>
         <mat-card-title>{{ item.title }}</mat-card-title>
         <mat-card-subtitle>{{ item.price | currency }}</mat-card-subtitle>
@@ -21,14 +24,23 @@
         </p>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-icon-button matTooltip="Agregar al carrito" (click)="agregar(item)">
+        <button
+          *ngIf="!item?.carrito"
+          mat-icon-button
+          matTooltip="Agregar al carrito"
+          (click)="agregar(item)"
+        >
           <mat-icon>add_shopping_cart</mat-icon>
         </button>
-        <!-- <button mat-icon-button matTooltip="Remover del carrito">
-            <mat-icon>
-                remove_shopping_cart
-            </mat-icon>
-        </button> -->
+
+        <button
+          *ngIf="item?.carrito"
+          mat-icon-button
+          matTooltip="Remover del carrito"
+          (click)="eliminar(item)"
+        >
+          <mat-icon> remove_shopping_cart </mat-icon>
+        </button>
         <!-- <button mat-icon-button matTooltip="Agregar 1">
             <mat-icon>exposure_plus_1</mat-icon>
         </button>

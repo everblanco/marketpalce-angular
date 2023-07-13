@@ -3,9 +3,20 @@
   <mat-list>
     <div mat-subheader>Productos</div>
     <mat-list-item *ngFor="let item of data?.body?.items">
-      <mat-icon matListItemIcon>shopping_basket</mat-icon>
-      <div matListItemTitle>{{ item.producto.title }}</div>
-      <div matListItemLine>{{ item.producto.price | currency }}</div>
+      <div class="container">
+        <mat-icon matListItemIcon>shopping_basket</mat-icon>
+        <div class="info">
+          <div matListItemTitle>{{ item.producto?.title }}</div>
+          <div matListItemLine>{{ item.producto?.price | currency }}</div>
+          <div matListItemLine>{{ item.cantidad }} unidades</div>
+        </div>
+        <div class="acciones">
+          <div>{{ item.cantidad * item.producto.price | currency }}</div>
+          <button mat-icon-button (click)="eliminar(item)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
     </mat-list-item>
     <mat-divider></mat-divider>
   </mat-list>
