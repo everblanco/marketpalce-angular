@@ -1,0 +1,13 @@
+mat-form-field {
+    width: 100%;
+}
+
+.main {
+    padding: 15px;
+}
+
+.controls {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}

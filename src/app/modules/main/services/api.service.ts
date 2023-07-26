@@ -23,4 +23,20 @@ export class ApiService {
   consultarCarrito() {
     return this.httpClient.get("http://localhost:7788/carritos");
   }
+
+  pagarCarrito(data: any){
+    return this.httpClient.post("http://localhost:7788/carritos/pagar", data);
+  }
+
+  crearTarjeta(data: any){
+    return this.httpClient.post("http://localhost:7788/tarjetas", data);
+  }
+
+  recargarTarjeta(data: any){
+    return this.httpClient.post("http://localhost:7788/tarjetas/recargas", data);
+  }
+
+  consultarTajeta(numero: string){
+    return this.httpClient.get("http://localhost:7788/tarjetas/byNumber/" + numero);
+  }
 }

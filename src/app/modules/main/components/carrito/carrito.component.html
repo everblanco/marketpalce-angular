@@ -1,5 +1,5 @@
 <h1 mat-dialog-title>Carrito de compras</h1>
-<div mat-dialog-content>
+<div mat-dialog-content *ngIf="!modoPagar">
   <mat-list>
     <div mat-subheader>Productos</div>
     <mat-list-item *ngFor="let item of data?.body?.items">
@@ -21,7 +21,41 @@
     <mat-divider></mat-divider>
   </mat-list>
 </div>
-<div mat-dialog-actions>
-  <button mat-button>Pagar</button>
+<div mat-dialog-actions *ngIf="!modoPagar">
+  <button mat-button (click)="modoPagar = true">Pagar</button>
   <button mat-button mat-dialog-close>Cerrar</button>
+</div>
+
+<div mat-dialog-content *ngIf="modoPagar">
+  <div mat-subheader>Pagar carrito</div>
+  <form [formGroup]="pagarForm">
+    <div class="controls">
+      <mat-form-field>
+        <input
+          matInput
+          type="text"
+          placeholder="Ingrese el número de la tarjeta"
+          formControlName="tarjeta"
+        />
+      </mat-form-field>
+
+      <mat-form-field *ngIf="infoTarjeta">
+        <input matInput type="text" formControlName="nombre" readonly/>
+      </mat-form-field>
+
+      <mat-form-field *ngIf="infoTarjeta">
+        <input matInput type="text" formControlName="fecha" readonly/>
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+
+<div mat-dialog-actions *ngIf="modoPagar && !infoTarjeta">
+  <button mat-button (click)="consultarTarjeta()">Continuar</button>
+  <button mat-button mat-dialog-close>Cancelar</button>
+</div>
+
+<div mat-dialog-actions *ngIf="infoTarjeta">
+  <button mat-button (click)="pagar()">Continuar</button>
+  <button mat-button mat-dialog-close>Cancelar</button>
 </div>
