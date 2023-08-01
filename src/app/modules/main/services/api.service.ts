@@ -39,4 +39,12 @@ export class ApiService {
   consultarTajeta(numero: string){
     return this.httpClient.get("http://localhost:7788/tarjetas/byNumber/" + numero);
   }
+
+  anularTransaccion(id: number) {
+    return this.httpClient.put("http://localhost:7788/transacciones/" + id + "/anular", {});
+  }
+
+  consultarTransacciones() {
+    return this.httpClient.get("http://localhost:7788/transacciones");
+  }
 }

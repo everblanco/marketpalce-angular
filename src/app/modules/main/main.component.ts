@@ -35,7 +35,7 @@ export class MainComponent implements OnInit {
   }
 
   get cantidad(): number {
-    return this.carrito? this.carrito.body?.items.length : 0;
+    return this.carrito? this.carrito.body?.items?.length : 0;
   }
 
   openModal() {

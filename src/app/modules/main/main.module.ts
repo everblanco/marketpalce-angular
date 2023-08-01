@@ -32,6 +32,7 @@ import { CarritoComponent } from './components/carrito/carrito.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PagarComponent } from './components/pagar/pagar.component';
 import { RecargarComponent } from './components/recargar/recargar.component';
+import { TransaccionesComponent } from './components/transacciones/transacciones.component';
 
 
 const materialComponents = [
@@ -65,7 +66,8 @@ const materialComponents = [
     TarjetasComponent,
     CarritoComponent,
     PagarComponent,
-    RecargarComponent
+    RecargarComponent,
+    TransaccionesComponent
   ],
   imports: [
     CommonModule,

@@ -77,14 +77,17 @@ export class ProductosComponent implements OnInit {
   }
 
   cambiarEstado() {
-    this.carrito.body.items.forEach((element: any) => {
-      const { productoId } = element;
-      const index = this.listaProductosView.findIndex(
-        (item: any) => item.id == productoId
-      );
-      if (index >= 0) {
-        this.listaProductosView[index]['carrito'] = true;
-      }
-    });
+    if (this.carrito.body.items) {
+      this.carrito.body.items.forEach((element: any) => {
+        const { productoId } = element;
+        const index = this.listaProductosView.findIndex(
+          (item: any) => item.id == productoId
+        );
+        if (index >= 0) {
+          this.listaProductosView[index]['carrito'] = true;
+        }
+      });
+    }
+    
   }
 }
